@@ -1,5 +1,5 @@
 loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-loadstring(game:HttpGet('https://github.com/gssuxc-crypto/skoziebaniychiter/blob/main/SdotEdotC.lua'))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/gssuxc-crypto/skoziebaniychiter/refs/heads/main/SdotEdotC.lua'))()
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
