@@ -14,12 +14,12 @@ pcall(function()
 	end
 end)
 
-humanoid:SetAttribute("StaminaDrainMulti", 0)
-humanoid:SetAttribute("StaminaChargeMulti", 1.3)
+humanoid:SetAttribute("SprintDrainMulti", 0)
+humanoid:SetAttribute("SprintChargeMulti", 1.3)
 
 humanoid:GetAttributeChangedSignal("StaminaChargeMulti"):Connect(function()
-	if humanoid:GetAttribute("StaminaChargeMulti") ~= 1.3 then
-		humanoid:SetAttribute("StaminaChargeMulti", 1.3)
+	if humanoid:GetAttribute("SprintChargeMulti") ~= 1.3 then
+		humanoid:SetAttribute("SprintChargeMulti", 1.3)
 	end
 end)
 
