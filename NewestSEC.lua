@@ -8,11 +8,9 @@ local hrp = character:WaitForChild("HumanoidRootPart")
 local rooms = workspace:WaitForChild("Rooms")
 local spawnedEntities = workspace:WaitForChild("SpawnedEntities")
 
--- ===================== UI =====================
 local gui = Instance.new("ScreenGui")
 gui.Parent = player:WaitForChild("PlayerGui")
 
--- Основной текст уведомлений
 local label = Instance.new("TextLabel")
 label.Size = UDim2.new(0.3,0,0.1,0)
 label.Position = UDim2.new(0.35,0,0.45,0)
@@ -24,8 +22,10 @@ label.Visible = false
 label.Parent = gui
 
 local showing = false
+
 local function showText(text)
 	if showing then return end
+
 	showing = true
 	label.Text = text
 	label.Visible = true
@@ -36,9 +36,10 @@ local function showText(text)
 	end)
 end
 
--- ===================== Подсветка =====================
 local function addHighlight(obj,color)
-	if obj:FindFirstChildOfClass("Highlight") then return end
+	if obj:FindFirstChildOfClass("Highlight") then
+		return
+	end
 
 	local hl = Instance.new("Highlight")
 	hl.FillColor = color
@@ -63,7 +64,6 @@ local function isInsideItemSpawns(obj)
 	return false
 end
 
--- ===================== Debug Frame =====================
 local debugFrame = Instance.new("ScrollingFrame")
 debugFrame.Size = UDim2.new(0.35,0,0.4,0)
 debugFrame.Position = UDim2.new(0,10,0,10)
@@ -101,7 +101,6 @@ local function addDebug(obj)
 		Vector2.new(0, debugFrame.CanvasSize.Y.Offset)
 end
 
--- ===================== Entity Frame =====================
 local entityFrame = Instance.new("ScrollingFrame")
 entityFrame.Size = UDim2.new(0.25,0,0.35,0)
 entityFrame.Position = UDim2.new(1,-260,0,10)
@@ -135,7 +134,6 @@ local function addEntityText(text,color)
 		Vector2.new(0, entityFrame.CanvasSize.Y.Offset)
 end
 
--- ===================== Универсальный поиск BasePart =====================
 local function getMainPart(obj)
 	if obj:IsA("BasePart") then
 		return obj
@@ -152,7 +150,6 @@ local function getMainPart(obj)
 	return nil
 end
 
--- ===================== Entity Tracking =====================
 local function trackEntity(obj)
 	addEntityText(obj.Name, Color3.fromRGB(255,0,0))
 
@@ -164,7 +161,6 @@ local function trackEntity(obj)
 	end)
 end
 
--- ===================== Beam =====================
 local beams = {}
 local entityBillboards = {}
 
@@ -231,7 +227,6 @@ local function createBeam(obj)
 	end)
 end
 
--- ===================== Distance Billboard =====================
 local function createDistanceBillboard(obj)
 	local part = getMainPart(obj)
 	if not part then return end
@@ -283,7 +278,6 @@ local function createDistanceBillboard(obj)
 	end)
 end
 
--- ===================== Универсальная обработка =====================
 local function processEntity(obj)
 	if not (obj:IsA("Model") or obj:IsA("BasePart")) then
 		return
@@ -299,7 +293,6 @@ local function processEntity(obj)
 	createDistanceBillboard(obj)
 end
 
--- ===================== ItemSpawns =====================
 local function processItemSpawn(obj)
 	if not obj:IsA("Model") then
 		return
@@ -313,22 +306,17 @@ local function processItemSpawn(obj)
 
 	local toolAttr = obj:GetAttribute("Tool")
 
-	if obj.Name == "Bandage" or toolAttr == "Bandage" then
-		addHighlight(obj, Color3.fromRGB(0,255,0))
-		showText("bandage")
-
-	elseif toolAttr == "Vita-Shot"
+	if toolAttr == "Vita-Shot"
 		or toolAttr == "V-Booster" then
 
 		addHighlight(obj, Color3.fromRGB(0,255,0))
-		showText("v-shot")
+		showText("VITA")
 
 	else
 		addHighlight(obj, Color3.fromRGB(170,0,255))
 	end
 end
 
--- ===================== Existing Objects =====================
 for _, obj in ipairs(rooms:GetDescendants()) do
 	processItemSpawn(obj)
 end
@@ -338,7 +326,6 @@ for _, obj in ipairs(spawnedEntities:GetChildren()) do
 	trackEntity(obj)
 end
 
--- ===================== Events =====================
 rooms.DescendantAdded:Connect(processItemSpawn)
 
 spawnedEntities.ChildAdded:Connect(function(obj)
