@@ -1,5 +1,4 @@
 loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/gssuxc-crypto/skoziebaniychiter/refs/heads/main/NewestSEC.lua'))()
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
@@ -22,6 +21,8 @@ humanoid:GetAttributeChangedSignal("StaminaChargeMulti"):Connect(function()
 		humanoid:SetAttribute("SprintChargeMulti", 1.3)
 	end
 end)
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/gssuxc-crypto/skoziebaniychiter/refs/heads/main/NewestSEC.lua'))()
 
 local shadowGui = Instance.new("ScreenGui")
 shadowGui.Name = "ShadowWarning"
