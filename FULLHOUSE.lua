@@ -68,7 +68,7 @@ joinText.BackgroundTransparency = 0.3
 joinText.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 joinText.TextColor3 = Color3.fromRGB(255, 255, 255)
 joinText.TextScaled = true
-joinText.Font = Enum.Font.GothamBold
+joinText.Font = Enum.Font.Code
 joinText.Visible = false
 joinText.Parent = joinGui
 
