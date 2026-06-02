@@ -34,7 +34,7 @@ shadowText.Position = UDim2.new(0.25, 0, 0.4, 0)
 shadowText.BackgroundTransparency = 1
 shadowText.TextColor3 = Color3.fromRGB(255, 0, 0)
 shadowText.TextScaled = true
-shadowText.Font = Enum.Font.GothamBlack
+shadowText.Font = Enum.Font.Code
 shadowText.Visible = false
 shadowText.Parent = shadowGui
 
